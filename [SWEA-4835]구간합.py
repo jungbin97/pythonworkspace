@@ -3,7 +3,7 @@ T = int(input())
 for test_case in range(1, T + 1):
     N, M = map(int, input().split())        # N 입력 받을 숫자 갯수, M 합할 숫자 갯수 
 
-    arr = list(map(int, input().split()))   # 리스트에 숫자입력
+    arr = list(map(int, input().split()))   # 리스트에 숫자입력 
 
     total = 0
 
