@@ -22,5 +22,3 @@ for test_case in range(1, T + 1):
                         matrix[j][k] = 2
     
     print("#%d %d" %(test_case, count))
-                    
-
