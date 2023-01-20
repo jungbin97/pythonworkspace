@@ -5,14 +5,13 @@ def binarySearch(page, key):
 
     while start <= end:
         middle = int((start+end)/2)
+        count += 1
         if middle == key:
             return count
         elif key < middle:
             end = middle
-            count +=1
         else:
             start = middle
-            count += 1
 
 T = int(input())
 
