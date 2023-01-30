@@ -11,7 +11,7 @@ def quick_sort(array, start, end):
         while left <= end and array[left] <= array[pivot]:
             left += 1
         # 피벗 보다 작은 데이터를 찾을 때까지 반복
-        while right >= start and array[right] >= array[pivot]:
+        while right > start and array[right] >= array[pivot]: # 부호 중요한 이유?
             right -= 1
         if left > right: # 엇갈렸다면 작은 데이터와 피벗을 교체
             array[right], array[pivot] = array[pivot], array[right]
