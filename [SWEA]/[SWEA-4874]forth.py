@@ -47,6 +47,46 @@ for test_case in range(1, T+1):
     
 
 """
+=======================================오류 코드=============================================
+
+T = int(input())
+
+for test_case in range(1, T+1):
+    postfix = input().split()
+
+    stack = []
+
+    for i in postfix:
+        if i == ".":
+            if len(stack) == 0:
+                print("#{} error".format(test_case))
+                break
+            else:
+                print("#{} {}" .format(test_case, stack[0]))
+                break
+
+        elif i.isdigit() == True:
+            stack.append(i)
+
+        else:   # 연산자 만날 경우
+            if len(stack) < 2:
+                print("#{} error".format(test_case))
+                break
+            else:
+                back_num = int(stack.pop())
+                front_num = int(stack.pop())
+
+                if i == "+":
+                    stack.append(str(front_num + back_num))
+                elif i == "-":
+                    stack.append(str(front_num - back1_num))
+                elif i == "*":
+                    stack.append(str(front_num * back_num))
+                elif i == "/":
+                    stack.append(str(front_num / back_num))
+
+=================================================================================================
+             
 오답
 채점용 input 파일로 채점한 결과 fail 입니다.
 (오답 : 10개의 테스트케이스 중 3개가 맞았습니다.)
@@ -61,5 +101,8 @@ Runtime Error!
 여러가지 예외(0을 나눌경우 등등 연산의 오류)를 인식하기 위해 바로 스택에 넣어주면안됨 why??이건 
 try except 원리를 알아야 할듯?
 
-"""
 
+1. 틀린 이유 정리하기(까다로운 예외) 
+2. pass 코드 리팩토링
+3. 문법 정리(람다식, isdigit()함수)
+"""
