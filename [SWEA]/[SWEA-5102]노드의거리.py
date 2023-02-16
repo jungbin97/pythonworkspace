@@ -23,8 +23,7 @@
 #     queue = deque()
     
 #     # 그래프 설정(양방향 그래프)
-# ------ distance 리스트 없이 노드를 기록할 수 없을까? ------------
-#     for i in range(E):
+#     for i in range(E드드:
 #         u, v = map(int, input().split())
 #         graph[u].append(v)
 #         graph[v].append(u)
