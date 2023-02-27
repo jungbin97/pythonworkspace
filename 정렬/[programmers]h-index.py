@@ -11,4 +11,13 @@ def solution(citations):
     return answer
 
 print(solution([3, 0, 6, 1, 5]))
-# --------------- testcase 1개 통과 -----------
+# --------------- testcase 1개 통과 ---------------
+# ------------------------------------------------
+def solution(citations):
+    citations.sort()    # 오름차순 정렬
+
+    for i in range(len(citations)):
+        if citations[i] >= len(citations) - i:
+            return len(citations) - i
+        
+    return 0
