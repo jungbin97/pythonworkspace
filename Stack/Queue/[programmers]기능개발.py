@@ -43,32 +43,52 @@
 # ----------------------------------------------------------------------------
 # 작업일 처리 개선(Math.ceil 사용) -> 나머지가 있으면 무조건 올림처리
 # ----------------------------------------------------------------------------
-from collections import deque
-import math
+# from collections import deque
+# import math
 
+# def solution(progresses, speeds):
+#     answer = []
+#     q_day = deque()
+
+#     # 작업일 처리
+#     for i in range(len(progresses)):
+#         day = math.ceil((100 - progresses[i])/speeds[i])
+#         q_day.append(day)
+
+#     # q가 빌떄까지 반복    deque peek값 확인
+#     now = q_day[0]
+#     count = 0
+#     while q_day:
+#         if now >= q_day[0]:
+#             q_day.popleft()
+#             count += 1
+#             if len(q_day) == 0:
+#                 answer.append(count)
+#         else:
+#             now = q_day[0]        # now 값 갱신
+#             answer.append(count)
+#             count = 0
+
+#     return answer
+
+# print(solution([95, 90, 99, 99, 80, 99], [1,1,1,1,1,1]))
+
+# ----------------------------------------------------------------------------
+# zip() 함수 -> 튜플 형태로 반환
+# zip() 함수 사용이유 : 작업일을 처리할때 동일한 인덱스를 사용하므로 합쳐서 계산이 쉽도록 함
+
+# -(p-100)//s 부분 Math.ceil 없이 처리하기 위함
+# (p-100) => 음수
+# (p-100) // s => 내림한 음수(음수에서 내림은 절대값은 커짐)
+# -((p-100)//s) => 올림한 양수
+# ----------------------------------------------------------------------------
 def solution(progresses, speeds):
-    answer = []
-    q_day = deque()
-
-    # 작업일 처리
-    for i in range(len(progresses)):
-        day = math.ceil((100 - progresses[i])/speeds[i])
-        q_day.append(day)
-
-    # q가 빌떄까지 반복    deque peek값 확인
-    now = q_day[0]
-    count = 0
-    while q_day:
-        if now >= q_day[0]:
-            q_day.popleft()
-            count += 1
-            if len(q_day) == 0:
-                answer.append(count)
+    Q = []
+    for p, s in zip(progresses, speeds):
+        if len(Q) == 0 or Q[-1][0] < -((p-100)//s):
+            Q.append([-((p-100)//s), 1])
         else:
-            now = q_day[0]        # now 값 갱신
-            answer.append(count)
-            count = 0
-
-    return answer
+            Q[-1][1] += 1
+    return [q[1] for q in Q]
 
 print(solution([95, 90, 99, 99, 80, 99], [1,1,1,1,1,1]))
