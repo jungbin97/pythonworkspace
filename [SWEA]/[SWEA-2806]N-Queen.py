@@ -7,7 +7,6 @@ def adjacent(x): # x와 i가 같으면 행이 같음, 근데 for문을 보면 x�
             return False
     return True
 
-# info : 인덱스, 값 = 행, 몇번쨰 인덱스에 1 넣은지
 def dfs(x):
     global result
 
