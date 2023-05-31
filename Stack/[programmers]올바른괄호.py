@@ -5,20 +5,40 @@
 # 순회가 끝났는데 스택 안쪽에 괄호가 남아있는경우(false)
 # 모든 괄호가 짝이 맞아서 마지막에 스택이 비게 된 경우(True)
 # ----------------------------------------------------------------------------
-def solution(s):
-    stack = []
-    for i in s:
-        if i == '(':
-            stack.append(i)
-        elif i == ')':
-            # 오른쪽 괄호로 시작할경우
-            if stack == []:
-                  return False
-            else:
-                stack.pop()
+# def solution(s):
+#     stack = []
+#     for i in s:
+#         if i == '(':
+#             stack.append(i)
+#         elif i == ')':
+#             # 오른쪽 괄호로 시작할경우
+#             if stack == []:
+#                   return False
+#             else:
+#                 stack.pop()
     
-    if stack != []: # 순회 끝났는데 괄호가 남아있는 경우
-        return False
-    return True
+#     if stack != []: # 순회 끝났는데 괄호가 남아있는 경우
+#         return False
+#     return True
 
-print(solution("((Helo)o)"))
+# print(solution("((Helo)o)"))
+
+# ----------------------------------------------------------------------------
+# 문자열을 하나씩 이동하면서 체크
+# '('가 등장하면 pair +1 
+# ')'가 등장하면 pair- 1 
+# pair<0 이면 ')'가 먼저 나온 것이므로 바로 False 출력
+# 문자가 입력되면 pair 그대로 유지
+# 최종적으로 pair == 0 이면 정답 (모든 괄호가 짝이 맞다는 것) 
+# ----------------------------------------------------------------------------
+def solution(s):
+    pair = 0
+    for i in s:
+        if pair < 0:
+            break
+        else:
+            pair = pair+1 if i == '(' else pair -1 if i == ')' else pair
+    return pair == 0
+
+
+print(solution("(("))
