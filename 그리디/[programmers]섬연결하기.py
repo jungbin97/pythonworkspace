@@ -3,9 +3,9 @@
 # 크루스칼 알고리즘 정석 풀이
 # ----------------------------------------------------------------------------
 def getParent(parent, x):
-    if parent[x] == x:
-        return x
-    return getParent(parent, parent[x])
+    if parent[x] != x:
+        parent[x] = getParent(parent, parent[x])
+    return parent[x]
 
 def unionParent(parent, a, b):
     a = getParent(parent, a)
