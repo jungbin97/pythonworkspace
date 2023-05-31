@@ -10,7 +10,7 @@ def solution(s):
     for i in s:
         if i == '(':
             stack.append(i)
-        else:
+        elif i == ')':
             # 오른쪽 괄호로 시작할경우
             if stack == []:
                   return False
@@ -21,4 +21,4 @@ def solution(s):
         return False
     return True
 
-print(solution("(())("))
+print(solution("((Helo)o)"))
