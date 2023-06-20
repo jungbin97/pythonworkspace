@@ -34,3 +34,19 @@ print(result)
         
 
 # print(max(result))
+# ----------------------------------------------------------------------------
+# 반복문 사용(완전 탐색)
+# ----------------------------------------------------------------------------
+n, m = map(int, input().split())
+cards = list(int, input().split())
+result = 0
+
+for i in range(n):
+    for j in range(i+1, n):
+        for k in range(j+1, n):
+            if cards[i] + cards[j] + cards[k] > m:
+                continue
+            else:
+                result = max(result, cards[i]+cards[j]+cards[k])
+
+print(result)
