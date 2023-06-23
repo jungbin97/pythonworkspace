@@ -1,8 +1,2 @@
-import heapq
-q = []
+n, m = map(int, input().split())
 
-for i in range(3):
-    heapq.heappush(q, (1, 2))
-
-
-print(heapq.heappop(q)[1])
