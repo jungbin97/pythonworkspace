@@ -2,6 +2,8 @@
 # [baekjoon] 집합의 표현 (그래프, python)
 # ----------------------------------------------------------------------------
 import sys
+sys.setrecursionlimit(10**5)
+
 input = sys.stdin.readline
 
 n, m = map(int, input().split())
