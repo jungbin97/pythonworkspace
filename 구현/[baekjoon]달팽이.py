@@ -67,3 +67,76 @@ for row in range(n):
 
     print()
 print(*result[0])
+
+
+# ----------------------------------------------------------------------------
+# 
+# ----------------------------------------------------------------------------
+
+n = int(input())
+tar = int(input())
+lst = [[0 for _ in range(n)] for _ in range(n)]
+r, c = n // 2, n // 2
+lst[r][c] = 1
+lst[r - 1][c] = 2
+lst[r - 1][c + 1] = 3
+t = 4
+c = c + 1
+
+def down():
+    global r, c, t
+    while lst[r][c - 1] > 0 and t < (n * n) + 1 :
+        lst[r][c] = t
+        t += 1
+        r += 1
+        if r == n:
+            r = n - 1
+            return
+
+def left():
+    global r, c, t
+    while lst[r - 1][c] > 0 and t < (n * n) + 1 :
+        lst[r][c] = t
+        t += 1
+        c -= 1
+        if c == -1:
+            c = 0
+            return
+    
+def up():
+    global r, c, t
+    while lst[r][c + 1] > 0 and t < (n * n) + 1:
+        lst[r][c] = t
+        t += 1
+        r -= 1
+        if r == -1:
+            r = 0
+            return
+
+def right():
+    global r, c, t
+    while lst[r + 1][c] > 0 and t < (n * n) + 1:
+        lst[r][c] = t
+        t += 1
+        c += 1
+        if c == n:
+            c = n - 1
+            return
+    
+while t < (n * n) + 1:
+    down()
+    left()
+    up()
+    right()
+
+a, b = 0, 0
+
+for i in range(n):
+    for j in range(n):
+        if lst[i][j] == tar:
+            a = i + 1
+            b = j + 1
+        print(lst[i][j], end = " ")
+    print()
+
+print(a, b)
