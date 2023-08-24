@@ -27,6 +27,7 @@ for _ in range(N):
     costs.append(int(cost))
     books.append(book)
 
+# 체크하는 부분 cnt[i]가 더크다면 단어를 만들수 없다
 def check():
     for i in range(len(cnt)):
         if cnt[i] > select_cnt[i]:
@@ -50,4 +51,4 @@ def dfs(idx, total):
 
 dfs(0,0)
 
-print(-1 if min_val == float('inf') else min_val)
+print(-1 if min_val == int(1e9) else min_val)
