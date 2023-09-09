@@ -8,20 +8,20 @@ input = sys.stdin.readline
 INF = float('inf')
 
 # 정점의 개수 V, 간선의 개수 E
-v, e = map(int, input().split())
+V, E = map(int, input().split())
 
 # 시작 노드 k
-k = int(input())
+K = int(input())
 
-graph = [[] for i in range(v+1)]
+graph = [[] for i in range(V+1)]
 
 # 방문한적 있는지 체크
-visited = [False] * (v+1)
+visited = [False] * (V+1)
 
-distance = [INF] * (v+1)
+distance = [INF] * (V+1)
 
 # 모든 간선 입력받기
-for _ in range(e):
+for _ in range(E):
     # u에서 v로 가는 간선 비용 w
     u, v, w = map(int, input().split())
     graph[u].append((v, w))
@@ -47,9 +47,9 @@ def dijkstra(start):
                 distance[i[0]] = cost
                 heapq.heappush(q, (cost, i[0]))
 
-dijkstra(k)
+dijkstra(K)
 
-for i in range(1, v+1):
+for i in range(1, V+1):
     if distance[i] == INF:
         print("INF")
     else:
