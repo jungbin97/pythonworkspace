@@ -16,7 +16,7 @@ K = int(input())
 graph = [[] for i in range(V+1)]
 
 # 방문한적 있는지 체크
-visited = [False] * (V+1)
+# visited = [False] * (V+1)
 
 distance = [INF] * (V+1)
 
