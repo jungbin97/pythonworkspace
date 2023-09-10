@@ -26,9 +26,9 @@ start_city, end_city = map(int, input().split())
 distance = [INF] * (N+1)
 
 def dijkstra(start):
-    q = [(0, start)]
+    q = []
     # 우선순위 큐에 삽입 튜플 순서(거리, 노드번호)
-    heapq.heappush(q)
+    heapq.heappush(q, (0, start))
     distance[start]= 0
 
     while q:
