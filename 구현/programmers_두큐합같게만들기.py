@@ -19,12 +19,11 @@ def solution(queue1, queue2):
     
     sum1, sum2 = sum(q1), sum(q2)
     
-    escape_cnt = len(q1) * 4
+    escape_cnt = len(q1) * 3 -3
 
-    while escape_cnt:
-        escape_cnt -= 1
-        # if answer > escape_cnt:
-        #     return -1
+    while True:
+        if answer > escape_cnt:
+            return -1
         
         if sum1 > sum2:
             sum1 -= q1[0]
@@ -34,9 +33,8 @@ def solution(queue1, queue2):
             sum2 -= q2[0]
             sum1 += q2[0]
             q1.append(q2.popleft())
-        if escape_cnt == 0:
+        else:
             return answer
-
         answer += 1
         print(q1, end=" ")
         print(q2)
