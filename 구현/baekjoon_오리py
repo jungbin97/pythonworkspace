@@ -1,0 +1,86 @@
+# 울음소리 글자가 5개 이상 => 시작시 체크
+# 울음소리는 5의 배수 여야함 => 시작시 체크
+# 처음 시작이 q 여야함 => 시작시 체크, visited로 방문하지 않은곳 체크
+# 끝은 k 로 끝나야함 
+# 울다 멈춘경우 => 5의 배수가 아니라는말? => 시작시 체크
+
+def countDucks(sound):
+    quack = 'quack'
+    visited = [False] * len(sound)
+    result = 0
+
+    # 시작 문자, 길이는 5의 배수, 전체 길이는 5이상
+    if sound[0] != 'q' or len(sound) % 5 !=0:
+        return -1
+
+    for i in range(len(sound)):
+        # 다른 오리의 울음소리 건너 뛰기
+        if visited[i]:
+            continue
+            
+        idx = 0
+        sameDuckCheck = True
+
+        for j in range(i, len(sound)):
+            # quack 순서 체크
+            if sound[j] == quack[idx] and not visited[j]:
+                visited[j] = True
+
+                # k발견 시 한마리 오리 울음소리 완성
+                if sound[j] == 'k':
+                    idx = 0
+                    if sameDuckCheck:
+                        result += 1
+                        sameDuckCheck = False
+                else:
+                    idx += 1
+    # 방문하지 않은 곳이 있다는 것 => 울음 순서가 정상적이지 않다는 것.
+    if False in visited or result == 0:
+        return -1
+    else:
+        return result
+
+duckSound = input()
+
+print(countDucks(duckSound))
+
+# -------------------------------------------------------------------
+# # 녹음 소리 리스트
+# duckSound = list(input())
+# quack = 'quack'
+# # 방문체크
+# visited = [False] * len(duckSound)
+
+# # 오리 최소 수
+# result = 0
+
+# # q로 시작하지 않는 경우, 울음소리가 5배수 여야함, 울음소리 글자가 5개 이상
+# if duckSound[0] != "q" or len(duckSound) % 5 != 0:
+#     print(-1)
+#     exit(0)
+# else:
+#     for i in range(len(duckSound)):
+#         # 다른 오리 울음 소리 건너 뛰기
+#         if visited[i]:
+#             continue
+            
+#         idx = 0
+#         sameDuck = True
+#         for j in range(i, len(duckSound)):
+#             # quack 체크
+#             if duckSound[j] == quack[idx] and not visited[j]:
+#                 visited[j] = True
+                
+#                 # K에 도달하면 한마리 울음소리
+#                 if duckSound[j] == 'k':
+#                     if sameDuck:
+#                         result += 1
+#                         sameDuck = False
+#                     idx = 0
+#                 else:
+#                     idx += 1
+
+# if False in visited or result == 0:
+#     print(-1)
+# else:
+#     print(result)
