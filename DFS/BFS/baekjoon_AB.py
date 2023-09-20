@@ -16,9 +16,8 @@ def solution(a,b):
             print(cnt)
             return
         
-        if a * 2 <= b:
+        if a <= b:
             q.append((a*2, cnt+1))
-        if a * 10 + 1 <= b:
             q.append((a*10+1, cnt+1))
     print(-1)
 
