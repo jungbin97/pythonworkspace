@@ -1,28 +1,39 @@
 # ----------------------------------------------------------------------------
-# D2[SWEA_1204] 1일차 - 최빈수 구하기
+# [baekjoon_2814] 최장 로로
 # ----------------------------------------------------------------------------
-from collections import defaultdict
-
 for tc in range(1, int(input())+1):
-    t = int(input())
+    # 정점, 간선
+    n, m = map(int, input().split())
+    graph = [[] for _ in range(n+1)]
+    result = 0
 
-    nums_dict = defaultdict(int)
-    nums = list(map(int ,input().split()))
+    for _ in range(m):
+        # a->b , b->a 무방향이므로 둘다 추가
+        a, b = map(int, input().split())
+        graph[a].append(b)
+        graph[b].append(a)
 
-    for num in nums:
-        nums_dict[num] += 1
-    # 최대 빈도수 찾기
-    max_frequency = max(nums_dict.values())
+    def dfs(node, cnt):
+        global result
+        visited[node]  = True
 
-    # 최대 빈도수를 가지는 숫자들 중 가장 큰 수 찾기
-    max_num = max(num for num, freq in nums_dict.items() if freq == max_frequency)
+        for i in graph[node]:
+            if not visited[i]:
+                dfs(i, cnt + 1)
+        visited[node]  = False
 
-    print(f"#{tc} {max_num}")
+        if cnt > result:
+            result = cnt
+
+    for i in range(1, n+1):
+        visited = [False] * (n+1)
+        dfs(i, 1)
+
+    print(f"#{tc} {result}")
 
 # 요약
-# 최빈수는 특정 자료에서 가장 여러번 나타나는 값을 의미함.
+# 가중치가 없는 무방향 그래프에서 최장 경로의 길이를 구하여라(경로는 정점의 개수를 말한다.)
+# 방문한 정점은 한번이상 방문 불가, 
 
-# 10, 8, 7, 2, 2, 4, 8, 8, 8, 9, 5, 5, 3
-# 최빈수는 8이다.
-
-# 최빈수를 출력하는 프로그램을 작성하라(단 최빈수가 여러개일 때 가장 큰수의 최빈수출력)
+# 풀이
+# 시작 노드를 모든 노드를 골라 진행.
